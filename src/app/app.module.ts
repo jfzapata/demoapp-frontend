@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from '@app/app-routing.module';
@@ -21,7 +22,8 @@ import { NavbarComponent } from '@app/core/layouts/navbar/navbar.component';
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent]
