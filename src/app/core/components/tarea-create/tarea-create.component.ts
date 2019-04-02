@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Location } from '@angular/common';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 
@@ -35,6 +36,7 @@ export class TareaCreateComponent implements OnInit {
   usuario: FormControl = new FormControl('');
   constructor(private fb: FormBuilder,
     private router: Router,
+    private location: Location,
     private route: ActivatedRoute,
     private usuariosService: UsuariosService,
     private tareasService: TareasService) { }
@@ -91,7 +93,7 @@ export class TareaCreateComponent implements OnInit {
       this.tareasService.createTarea(tarea)
         .subscribe(() => {
           presentToast('Tarea creada correctamente!', 'success');
-          this.router.navigate(['/tareas']);
+          this.location.back();
         }, () => {
           presentToast('Error al crear la tarea', 'error');
         });
@@ -99,7 +101,7 @@ export class TareaCreateComponent implements OnInit {
       this.tareasService.createTarea(tarea)
         .subscribe(() => {
           presentToast('Tarea editada correctamente!', 'success');
-          this.router.navigate(['/tareas']);
+          this.location.back();
         }, () => {
           presentToast('Error al editar la tarea', 'error');
         });

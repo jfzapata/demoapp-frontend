@@ -54,6 +54,13 @@ export class UsuariosListComponent implements OnInit {
               label: 'Editar'
             },
             {
+              navigateFunction: (router: Router, params: any) => {
+                router.navigate(['/tareas-usuario', params.data.usuarioId]);
+              },
+              icon: 'remove_red_eye',
+              label: 'Ver tareas del usuario'
+            },
+            {
               context: this,
               icon: 'delete',
               label: 'Eliminar'

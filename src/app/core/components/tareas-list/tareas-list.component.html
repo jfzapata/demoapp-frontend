@@ -1,5 +1,6 @@
 <div class="container content">
-  <h3>Lista de Tareas</h3>
+  <h3 *ngIf="!tareasUsuario">Lista de Tareas</h3>
+  <h3 *ngIf="tareasUsuario">Lista de Tareas de {{ nombreUsuario }}</h3>
   <hr>
   <mdb-card *ngIf="tareas">
     <mdb-card-body>

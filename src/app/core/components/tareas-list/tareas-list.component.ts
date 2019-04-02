@@ -1,13 +1,15 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 // Own
 // Types
 import { Tarea } from '@app/common/types/interfaces/tarea';
+import { Usuario } from '@app/common/types/interfaces/usuario';
 import { ColumnDefinition } from '@app/common/types/interfaces/coumn-definition';
 // Services
 import { TareasService } from '@app/common/services/tareas.service';
+import { UsuariosService } from '@app/common/services/usuarios.service';
 // Utils
 import { presentToast } from '@app/common/utils/general';
 
@@ -23,12 +25,30 @@ export class TareasListComponent implements OnInit {
     icon: 'add',
     route: '/create-tarea'
   }];
+  tareasUsuario = false; // Should query tareas by usuario id
+  nombreUsuario: string;
+  usuarioId: number;
   constructor(private tareasService: TareasService,
+    private usuariosService: UsuariosService,
+    private router: Router,
+    private route: ActivatedRoute,
     private dialog: MatDialog) { }
 
   ngOnInit() {
     this.buildColums();
-    this.getTareas();
+    if (this.router.url.indexOf('tareas-usuario') !== -1) {
+      this.route.params.subscribe(async (params: any) => {
+        this.tareasUsuario = true;
+        this.usuarioId = parseInt(params.usuarioId, null);
+        await this.usuariosService.getUsuarioById(this.usuarioId).toPromise()
+        .then((usuario) => {
+          this.nombreUsuario = `${usuario.nombres} ${usuario.apellidos}`;
+        });
+        this.getTareas(parseInt(params.usuarioId, null));
+      });
+    } else {
+      this.getTareas();
+    }
   }
 
   private buildColums() {
@@ -79,7 +99,7 @@ export class TareasListComponent implements OnInit {
         this.tareasService.deleteTarea(tarea.tareaId)
           .subscribe(() => {
             presentToast('Tarea eliminada!', 'success');
-            this.getTareas();
+            this.getTareas(this.usuarioId);
           }, () => {
             presentToast('Error al eliminar la tarea!', 'error');
           });
@@ -87,13 +107,22 @@ export class TareasListComponent implements OnInit {
     });
   }
 
-  private getTareas() {
-    this.tareasService.getTareas()
-    .subscribe((tareas: Tarea[]) => {
-      this.tareas = tareas;
-    }, (err) => {
-
-    });
+  private getTareas(usuarioId?: number) {
+    if (!usuarioId) {
+      this.tareasService.getTareas()
+        .subscribe((tareas: Tarea[]) => {
+          this.tareas = tareas;
+        }, (err) => {
+          presentToast('Error al consultar las tareas!', 'error');
+        });
+    } else {
+      this.tareasService.getTareasByUsuarioId(usuarioId)
+        .subscribe((tareas: Tarea[]) => {
+          this.tareas = tareas;
+        }, (err) => {
+          presentToast('Error al consultar las tareas!', 'error');
+        });
+    }
   }
 
 }
