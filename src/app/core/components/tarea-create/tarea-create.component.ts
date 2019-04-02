@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 
 // Own
 // Types
@@ -34,6 +35,7 @@ export class TareaCreateComponent implements OnInit {
   usuario: FormControl = new FormControl('');
   constructor(private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private usuariosService: UsuariosService,
     private tareasService: TareasService) { }
 
@@ -43,16 +45,20 @@ export class TareaCreateComponent implements OnInit {
       this.usuarios = usuarios;
       this.usuariosFiltered = this.usuarios;
     });
-    this.buildForm();
 
-    this.usuario.valueChanges.subscribe(val => {
-      if (typeof val === 'string') {
-        this.filterUsuarios(val);
-      }
-      if (typeof val === 'object') {
-        this.tareaForm.get('usuario').patchValue(val);
-      }
-    });
+    if (this.router.url.indexOf('edit-tarea') !== -1) {
+      this.route.params.subscribe(async (params: any) => {
+        await this.tareasService.getTareaById(parseInt((params as any).id, null)).toPromise()
+          .then((tarea: Tarea) => {
+            this.isEdition = true;
+            this.tarea = tarea;
+            this.usuario.patchValue(this.tarea.usuario);
+            this.buildForm();
+          });
+      });
+    } else {
+      this.buildForm();
+    }
   }
 
   getNombreUsuario(value) {
@@ -63,21 +69,41 @@ export class TareaCreateComponent implements OnInit {
     this.tareaForm = this.fb.group({
       tareaId: [this.tarea ? this.tarea.tareaId : ''],
       fechaCreacion: [this.tarea ? this.tarea.fechaCreacion : ''],
-      fechaEjecucion: [this.tarea ? new Date(this.tarea.fechaEjecucion) : ''],
+      fechaEjecucion: [this.tarea ? moment(this.tarea.fechaEjecucion, 'YYYY-MM-DD"').toDate() : ''],
       usuario: [this.tarea ? this.tarea.usuario : ''],
       estado: [this.tarea ? this.tarea.estado : true]
+    });
+
+    this.usuario.valueChanges.subscribe(val => {
+      if (typeof val === 'string') {
+        this.filterUsuarios(val);
+      }
+      if (typeof val === 'object') {
+        this.tareaForm.get('usuario').patchValue(val);
+        this.tareaForm.markAsDirty();
+      }
     });
   }
 
   create() {
     const tarea: Tarea = this.tareaForm.value;
-    this.tareasService.createTarea(tarea)
-    .subscribe(() => {
-      presentToast('Tarea creada correctamente!', 'success');
-      this.router.navigate(['/tareas']);
-    }, () => {
-      presentToast('Error al crear la tarea', 'error');
-    });
+    if (!this.isEdition) {
+      this.tareasService.createTarea(tarea)
+        .subscribe(() => {
+          presentToast('Tarea creada correctamente!', 'success');
+          this.router.navigate(['/tareas']);
+        }, () => {
+          presentToast('Error al crear la tarea', 'error');
+        });
+    } else {
+      this.tareasService.createTarea(tarea)
+        .subscribe(() => {
+          presentToast('Tarea editada correctamente!', 'success');
+          this.router.navigate(['/tareas']);
+        }, () => {
+          presentToast('Error al editar la tarea', 'error');
+        });
+    }
   }
 
   private filterUsuarios(val: string) {

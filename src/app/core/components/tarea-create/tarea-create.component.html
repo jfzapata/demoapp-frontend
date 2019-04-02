@@ -1,5 +1,6 @@
 <div class="container content">
   <h3 *ngIf="!isEdition">Crear Tarea</h3>
+  <h3 *ngIf="isEdition">Editar Tarea</h3>
   <hr>
   <div class="row">
     <form class="col-12" name="tareaForm" *ngIf="tareaForm" [formGroup]="tareaForm" (submit)="create()">

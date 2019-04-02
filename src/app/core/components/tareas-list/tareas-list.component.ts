@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 // Own
 // Types
@@ -37,6 +38,21 @@ export class TareasListComponent implements OnInit {
         filter: true
       },
       { headerName: 'Estado', filter: true, valueGetter: (params) => params.data.estado ? 'Habilitado' : 'Deshabilitado' },
+      {
+        headerName: 'Acciones',
+        cellRenderer: 'rowActions',
+        cellRendererParams: {
+          actions: [
+            {
+              navigateFunction: (router: Router, params: any) => {
+                router.navigate(['/edit-tarea', params.data.tareaId]);
+              },
+              icon: 'edit',
+              label: 'Editar'
+            }
+          ],
+        }
+      }
     ];
   }
 
