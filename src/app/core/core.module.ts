@@ -2,11 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Components
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from '@app/core/components/home/home.component';
+import { UsuariosListComponent } from '@app/core/components/usuarios-list/usuarios-list.component';
+import { TareasListComponent } from '@app/core/components/tareas-list/tareas-list.component';
 
 @NgModule({
   declarations: [
-  HomeComponent],
+  HomeComponent,
+  UsuariosListComponent,
+  TareasListComponent],
   imports: [
     CommonModule
   ]
