@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import * as moment from 'moment';
 
 // Own
 // Constants
@@ -34,10 +35,16 @@ export class TareasService {
   }
 
   createTarea(tarea: Tarea): Observable<Tarea> {
+    if (typeof tarea.fechaEjecucion !== 'string') {
+      tarea.fechaEjecucion = moment(tarea.fechaEjecucion).format('YYYY/MM/DD');
+    }
     return this.http.post<Tarea>(`${this.endPoint}`, tarea, httpOptions);
   }
 
   updateTarea(tarea: Tarea): Observable<Tarea> {
+    if (typeof tarea.fechaEjecucion !== 'string') {
+      tarea.fechaEjecucion = moment(tarea.fechaEjecucion).format('YYYY/MM/DD');
+    }
     return this.http.put<Tarea>(`${this.endPoint}/${tarea.tareaId}`, tarea, httpOptions);
   }
 
