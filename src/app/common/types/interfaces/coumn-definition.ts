@@ -4,4 +4,5 @@ export interface ColumnDefinition {
   sortable?: boolean;
   filter?: boolean;
   valueGetter?: Function;
+  width?: number;
 }

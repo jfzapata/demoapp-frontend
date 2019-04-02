@@ -19,7 +19,7 @@ export class UsuariosListComponent implements OnInit {
   columns: ColumnDefinition[]; // The colums for the table
   floatingActions = [{
     icon: 'add',
-    route: '/'
+    route: '/create-usuario'
   }];
   constructor(private usuariosService: UsuariosService,
     private tareasService: TareasService) { }
@@ -35,7 +35,7 @@ export class UsuariosListComponent implements OnInit {
       { headerName: 'Apellidos', field: 'apellidos', sortable: true, filter: true },
       { headerName: 'Fecha de Creación', field: 'fechaCreacion', sortable: true, filter: true },
       { headerName: 'Estado', filter: true, valueGetter: (params) => params.data.estado ? 'Habilitado' : 'Deshabilitado' },
-      { headerName: 'Cantidad de tareas asignadas', valueGetter: (params) => params.data.tareas.length }
+      { headerName: 'Cantidad de tareas asignadas', width: 300, valueGetter: (params) => params.data.tareas.length }
     ];
   }
 

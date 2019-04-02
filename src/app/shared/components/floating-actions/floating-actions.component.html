@@ -2,11 +2,11 @@
     <eco-fab-speed-dial #myFab direction="up" (mouseenter)="myFab.open = true"
     (mouseleave)="myFab.open = false">
         <eco-fab-speed-dial-trigger [spin]="true">
-            <button mat-fab ><mat-icon class="spin360">widgets</mat-icon></button>
+            <button mat-fab><mat-icon class="spin360">widgets</mat-icon></button>
         </eco-fab-speed-dial-trigger>
 
         <eco-fab-speed-dial-actions>
-            <button mat-mini-fab *ngFor="let floatingAction of floatingActions"><mat-icon>{{ floatingAction.icon }}</mat-icon></button>
+            <button mat-mini-fab *ngFor="let floatingAction of floatingActions" [routerLink]="[floatingAction.route]"><mat-icon>{{ floatingAction.icon }}</mat-icon></button>
         </eco-fab-speed-dial-actions>
     </eco-fab-speed-dial>
 </div>

@@ -9,12 +9,14 @@ import { SharedModule } from '@app/shared/shared.module';
 import { HomeComponent } from '@app/core/components/home/home.component';
 import { UsuariosListComponent } from '@app/core/components/usuarios-list/usuarios-list.component';
 import { TareasListComponent } from '@app/core/components/tareas-list/tareas-list.component';
+import { CreateUsuarioComponent } from '@app/core/components/create-usuario/create-usuario.component';
 
 @NgModule({
   declarations: [
   HomeComponent,
   UsuariosListComponent,
-  TareasListComponent],
+  TareasListComponent,
+  CreateUsuarioComponent],
   imports: [
     MDBBootstrapModule.forRoot(),
     CommonModule,
