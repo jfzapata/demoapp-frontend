@@ -19,7 +19,7 @@ const httpOptions = {
 export class UsuariosService {
 
   private endPoint = `${API_URL}/usuarios`;
-  constructor(private http: HttpClient) { console.log(this.endPoint); }
+  constructor(private http: HttpClient) { }
 
   getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.endPoint, httpOptions);

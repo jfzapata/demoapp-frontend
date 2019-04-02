@@ -20,7 +20,7 @@ const httpOptions = {
 export class TareasService {
 
   private endPoint = `${API_URL}/tareas`;
-  constructor(private http: HttpClient) { console.log(this.endPoint); }
+  constructor(private http: HttpClient) { }
 
   getTareas(): Observable<Tarea[]> {
     return this.http.get<Tarea[]>(this.endPoint, httpOptions);

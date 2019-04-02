@@ -48,11 +48,20 @@ export class UsuariosListComponent implements OnInit {
               },
               icon: 'edit',
               label: 'Editar'
+            },
+            {
+              context: this,
+              icon: 'delete',
+              label: 'Eliminar'
             }
           ],
         }
       }
     ];
+  }
+
+  methodFromParent(params: any) {
+    console.log(params);
   }
 
   private getUsuarios() {

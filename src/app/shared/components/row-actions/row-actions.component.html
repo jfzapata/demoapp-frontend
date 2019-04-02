@@ -4,7 +4,15 @@
   </button>
   <mat-menu #menu="matMenu">
     <div *ngFor="let option of options">
-      <a (click)="option.navigateFunction(_router, params)">
+      <a *ngIf="option.navigateFunction" (click)="option.navigateFunction(_router, params)">
+        <button mat-menu-item>
+          <mat-icon>{{ option.icon }}</mat-icon>
+          {{ option.label }}
+        </button>
+      </a>
+    </div>
+    <div *ngFor="let option of options">
+      <a *ngIf="option.context" (click)="option.context.methodFromParent(params)">
         <button mat-menu-item>
           <mat-icon>{{ option.icon }}</mat-icon>
           {{ option.label }}
