@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 // App modules
 import { SharedModule } from '@app/shared/shared.module';
@@ -23,7 +24,8 @@ import { CreateUsuarioComponent } from '@app/core/components/create-usuario/crea
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot()
   ]
 })
 export class CoreModule { }

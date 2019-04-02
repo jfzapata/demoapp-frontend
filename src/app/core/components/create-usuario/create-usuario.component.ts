@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // Own
 // Types
 import { Usuario } from '@app/common/types/interfaces/usuario';
+// Utils
+import { presentToast } from '@app/common/utils/general';
 // Services
 import { UsuariosService } from '@app/common/services/usuarios.service';
 
@@ -41,6 +43,7 @@ export class CreateUsuarioComponent implements OnInit {
   }
 
   create() {
+    const usuario: Usuario = this.usuarioForm.value;
 
   }
 
