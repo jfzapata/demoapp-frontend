@@ -19,7 +19,7 @@ export class RowActionsComponent implements ICellRendererAngularComp {
    */
   public agInit(params: any): void {
     this.params = params;
-    this.options = this.params.options;
+    this.options = this.params.actions;
   }
 
   /**

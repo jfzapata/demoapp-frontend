@@ -56,6 +56,9 @@ import {
     MatAutocompleteModule,
     MatMenuModule,
     FloatingActionsComponent
+  ],
+  entryComponents: [
+    RowActionsComponent
   ]
 })
 export class SharedModule { }

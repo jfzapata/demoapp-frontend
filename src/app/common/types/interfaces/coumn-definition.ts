@@ -5,4 +5,6 @@ export interface ColumnDefinition {
   filter?: boolean;
   valueGetter?: Function;
   width?: number;
+  cellRenderer?: any;
+  cellRendererParams?: any;
 }

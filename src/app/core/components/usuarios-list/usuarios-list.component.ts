@@ -8,6 +8,7 @@ import { ColumnDefinition } from '@app/common/types/interfaces/coumn-definition'
 // Services
 import { UsuariosService } from '@app/common/services/usuarios.service';
 import { TareasService } from '@app/common/services/tareas.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios-list',
@@ -35,7 +36,22 @@ export class UsuariosListComponent implements OnInit {
       { headerName: 'Apellidos', field: 'apellidos', sortable: true, filter: true },
       { headerName: 'Fecha de Creación', field: 'fechaCreacion', sortable: true, filter: true },
       { headerName: 'Estado', filter: true, valueGetter: (params) => params.data.estado ? 'Habilitado' : 'Deshabilitado' },
-      { headerName: 'Cantidad de tareas asignadas', width: 300, valueGetter: (params) => params.data.tareas.length }
+      { headerName: 'Cantidad de tareas asignadas', width: 300, valueGetter: (params) => params.data.tareas.length },
+      {
+        headerName: 'Acciones',
+        cellRenderer: 'rowActions',
+        cellRendererParams: {
+          actions: [
+            {
+              navigateFunction: (router: Router, params: any) => {
+
+              },
+              icon: 'edit',
+              label: 'Editar'
+            }
+          ],
+        }
+      }
     ];
   }
 

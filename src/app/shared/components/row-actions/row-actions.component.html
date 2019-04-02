@@ -2,12 +2,14 @@
   <button mat-button [matMenuTriggerFor]="menu">
     <mat-icon>more_vert</mat-icon>
   </button>
-  <mat-menu #menu="matMenu" *ngFor="let option of options">
-      <a *ngIf="option.navigateFunction" (click)="option.navigateFunction(_router, params)">
+  <mat-menu #menu="matMenu">
+    <div *ngFor="let option of options">
+      <a (click)="option.navigateFunction(_router, params)">
         <button mat-menu-item>
-          <mat-icon>{{option.icon}}</mat-icon>
+          <mat-icon>{{ option.icon }}</mat-icon>
           {{ option.label }}
         </button>
       </a>
+    </div>
   </mat-menu>
 </ng-container>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { GridOptions } from 'ag-grid-community';
 
 // Own
 // Types
@@ -15,9 +16,9 @@ export class GridComponent implements OnInit {
   @Input() columnDefs: ColumnDefinition[]; // The columns
   @Input() rowData: any[]; // The records to display
   paginationPageSize = 5;
-  frameworkComponents = [{
+  frameworkComponents = {
     rowActions: RowActionsComponent,
-  }];
+  };
   constructor() { }
 
   ngOnInit() {
