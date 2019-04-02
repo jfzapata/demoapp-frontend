@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
@@ -11,6 +12,8 @@ import { CoreModule } from '@app/core/core.module';
 
 // Layouts
 import { NavbarComponent } from '@app/core/layouts/navbar/navbar.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +21,7 @@ import { NavbarComponent } from '@app/core/layouts/navbar/navbar.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     CoreModule,

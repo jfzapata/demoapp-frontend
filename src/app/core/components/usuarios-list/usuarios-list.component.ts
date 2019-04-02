@@ -17,6 +17,10 @@ import { TareasService } from '@app/common/services/tareas.service';
 export class UsuariosListComponent implements OnInit {
   usuarios: Usuario[]; // The records gonna be show
   columns: ColumnDefinition[]; // The colums for the table
+  floatingActions = [{
+    icon: 'add',
+    route: '/'
+  }];
   constructor(private usuariosService: UsuariosService,
     private tareasService: TareasService) { }
 
