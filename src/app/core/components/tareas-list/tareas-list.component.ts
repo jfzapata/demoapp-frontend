@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+// Own
+// Services
+import { TareasService } from '@app/common/services/tareas.service';
+
 @Component({
   selector: 'app-tareas-list',
   templateUrl: './tareas-list.component.html',
@@ -7,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TareasListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tareasService: TareasService) { }
 
   ngOnInit() {
   }

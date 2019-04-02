@@ -25,7 +25,7 @@ export class UsuariosService {
     return this.http.get<Usuario[]>(this.endPoint, httpOptions);
   }
 
-  getUsuarioById(usuarioId: string): Observable<Usuario> {
+  getUsuarioById(usuarioId: number): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.endPoint}/${usuarioId}`, httpOptions);
   }
 
@@ -37,8 +37,8 @@ export class UsuariosService {
     return this.http.put<Usuario>(`${this.endPoint}/${usuario.usuarioId}`, usuario, httpOptions);
   }
 
-  deleteUsuario(usuarioId: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(`${this.endPoint}/${usuarioId}`, httpOptions);
+  deleteUsuario(usuarioId: number): Observable<void> {
+    return this.http.delete<void>(`${this.endPoint}/${usuarioId}`, httpOptions);
   }
 
 }
