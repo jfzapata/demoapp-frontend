@@ -31,6 +31,10 @@ const routes: Routes = [{
 {
   path: 'create-tarea',
   component: TareaCreateComponent
+},
+{
+  path: 'edit-tarea/:id',
+  component: TareaCreateComponent
 }];
 
 @NgModule({
