@@ -44,7 +44,7 @@ export class UsuariosListComponent implements OnInit {
           actions: [
             {
               navigateFunction: (router: Router, params: any) => {
-
+                router.navigate(['/edit-usuario', params.data.usuarioId]);
               },
               icon: 'edit',
               label: 'Editar'

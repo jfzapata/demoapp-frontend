@@ -21,6 +21,10 @@ const routes: Routes = [{
   component: CreateUsuarioComponent
 },
 {
+  path: 'edit-usuario/:id',
+  component: CreateUsuarioComponent
+},
+{
   path: 'tareas',
   component: TareasListComponent
 },
