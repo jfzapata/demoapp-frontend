@@ -27,7 +27,7 @@ export class UsuariosListComponent implements OnInit {
       { headerName: 'Nombres', field: 'nombres', sortable: true, filter: true },
       { headerName: 'Apellidos', field: 'apellidos', sortable: true, filter: true },
       { headerName: 'Fecha de Creación', field: 'fechaCreacion', sortable: true, filter: true },
-      { headerName: 'Estado', valueGetter: (params) => params.data.estado ? 'Habilitado' : 'Deshabilitado' },
+      { headerName: 'Estado', filter: true, valueGetter: (params) => params.data.estado ? 'Habilitado' : 'Deshabilitado' },
       { headerName: 'Cantidad de tareas asignadas', valueGetter: (params) => params.data.tareas.length }
     ];
   }
