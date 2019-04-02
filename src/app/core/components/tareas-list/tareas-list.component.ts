@@ -76,14 +76,13 @@ export class TareasListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        /*this.tareasService.deleteTarea(tarea.tareaId)
+        this.tareasService.deleteTarea(tarea.tareaId)
           .subscribe(() => {
             presentToast('Tarea eliminada!', 'success');
             this.getTareas();
           }, () => {
             presentToast('Error al eliminar la tarea!', 'error');
-          });*/
-          console.log('eliminar tarea');
+          });
       }
     });
   }
