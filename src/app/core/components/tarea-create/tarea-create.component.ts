@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 // Types
 import { Usuario } from '@app/common/types/interfaces/usuario';
 import { Tarea } from '@app/common/types/interfaces/tarea';
+// Utils
+import { presentToast } from '@app/common/utils/general';
 // Services
 import { UsuariosService } from '@app/common/services/usuarios.service';
 import { TareasService } from '@app/common/services/tareas.service';
@@ -64,6 +66,17 @@ export class TareaCreateComponent implements OnInit {
       fechaEjecucion: [this.tarea ? new Date(this.tarea.fechaEjecucion) : ''],
       usuario: [this.tarea ? this.tarea.usuario : ''],
       estado: [this.tarea ? this.tarea.estado : true]
+    });
+  }
+
+  create() {
+    const tarea: Tarea = this.tareaForm.value;
+    this.tareasService.createTarea(tarea)
+    .subscribe(() => {
+      presentToast('Tarea creada correctamente!', 'success');
+      this.router.navigate(['/tareas']);
+    }, () => {
+      presentToast('Error al crear la tarea', 'error');
     });
   }
 

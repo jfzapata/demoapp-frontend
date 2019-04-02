@@ -36,14 +36,14 @@ export class TareasService {
 
   createTarea(tarea: Tarea): Observable<Tarea> {
     if (typeof tarea.fechaEjecucion !== 'string') {
-      tarea.fechaEjecucion = moment(tarea.fechaEjecucion).format('YYYY/MM/DD');
+      tarea.fechaEjecucion = moment(tarea.fechaEjecucion).format('YYYY-MM-DD');
     }
     return this.http.post<Tarea>(`${this.endPoint}`, tarea, httpOptions);
   }
 
   updateTarea(tarea: Tarea): Observable<Tarea> {
     if (typeof tarea.fechaEjecucion !== 'string') {
-      tarea.fechaEjecucion = moment(tarea.fechaEjecucion).format('YYYY/MM/DD');
+      tarea.fechaEjecucion = moment(tarea.fechaEjecucion).format('YYYY-MM-DD');
     }
     return this.http.put<Tarea>(`${this.endPoint}/${tarea.tareaId}`, tarea, httpOptions);
   }
