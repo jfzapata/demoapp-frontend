@@ -77,7 +77,13 @@ export class UsuariosListComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          console.log('eliminar');
+          this.usuariosService.deleteUsuario(usuario.usuarioId)
+          .subscribe(() => {
+            presentToast('Usuario eliminado!', 'success');
+            this.getUsuarios();
+          }, () => {
+            presentToast('Error al eliminar el usuario!', 'error');
+          });
         }
       });
     }
