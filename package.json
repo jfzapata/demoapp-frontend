@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+    "@ecodev/fab-speed-dial": "^3.1.0",
     "ag-grid-angular": "^20.2.0",
     "ag-grid-community": "^20.2.0",
     "angular-bootstrap-md": "^7.4.4",
