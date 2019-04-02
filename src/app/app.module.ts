@@ -9,6 +9,7 @@ import { AppComponent } from '@app/app.component';
 
 // App Modules
 import { CoreModule } from '@app/core/core.module';
+import { SharedModule } from '@app/shared/shared.module';
 
 // Layouts
 import { NavbarComponent } from '@app/core/layouts/navbar/navbar.component';
@@ -22,6 +23,7 @@ import { NavbarComponent } from '@app/core/layouts/navbar/navbar.component';
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
+    SharedModule,
     MDBBootstrapModule.forRoot(),
     AgGridModule.withComponents([])
   ],
