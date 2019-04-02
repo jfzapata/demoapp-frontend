@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 // Own
 // Types
@@ -29,10 +29,22 @@ export class CreateUsuarioComponent implements OnInit {
   }];
   constructor(private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private usuariosService: UsuariosService) { }
 
   ngOnInit() {
-    this.buildForm();
+    if (this.router.url.indexOf('edit-usuario') !== -1) {
+      this.route.params.subscribe(async (params: any) => {
+        await this.usuariosService.getUsuarioById(parseInt((params as any).id, null)).toPromise()
+          .then((usuario: Usuario) => {
+            this.isEdition = true;
+            this.usuario = usuario;
+            this.buildForm();
+          });
+      });
+    } else {
+      this.buildForm();
+    }
   }
 
   buildForm() {
@@ -47,13 +59,23 @@ export class CreateUsuarioComponent implements OnInit {
 
   create() {
     const usuario: Usuario = this.usuarioForm.value;
-    this.usuariosService.createUsuario(usuario)
-    .subscribe(() => {
-      presentToast('Usuario creado correctamente!', 'success');
-      this.router.navigate(['/usuarios']);
-    }, () => {
-      presentToast('Error al crear el usuario', 'error');
-    });
+    if (!this.isEdition) {
+      this.usuariosService.createUsuario(usuario)
+        .subscribe(() => {
+          presentToast('Usuario creado correctamente!', 'success');
+          this.router.navigate(['/usuarios']);
+        }, () => {
+          presentToast('Error al crear el usuario', 'error');
+        });
+    } else {
+      this.usuariosService.updateUsuario(usuario)
+        .subscribe(() => {
+          presentToast('Usuario editado correctamente!', 'success');
+          this.router.navigate(['/usuarios']);
+        }, () => {
+          presentToast('Error al editar el usuario', 'error');
+        });
+    }
   }
 
 }

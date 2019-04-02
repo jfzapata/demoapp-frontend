@@ -1,5 +1,6 @@
 <div class="content container">
   <h3 *ngIf="!isEdition">Crear Usuario</h3>
+  <h3 *ngIf="isEdition">Editar Usuario</h3>
   <hr>
   <div class="row">
     <form class="col-12" name="usuarioForm" *ngIf="usuarioForm" [formGroup]="usuarioForm" (submit)="create()">
