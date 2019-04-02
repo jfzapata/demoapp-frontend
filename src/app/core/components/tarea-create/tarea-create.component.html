@@ -2,17 +2,17 @@
   <h3 *ngIf="!isEdition">Crear Tarea</h3>
   <hr>
   <div class="row">
-    <form class="col-12" *ngIf="tareaForm" [formGroup]="tareaForm" (submit)="create()">
+    <form class="col-12" name="tareaForm" *ngIf="tareaForm" [formGroup]="tareaForm" (submit)="create()">
       <div class="col-8 example-container">
         <mat-form-field>
-          <input matInput [matDatepicker]="fechaEjecucion" formControlName="fechaEjecucion" placeholder="Fecha de ejecución">
+          <input matInput [matDatepicker]="fechaEjecucion" name="tareaForm_fechaEjecucion" formControlName="fechaEjecucion" placeholder="Fecha de ejecución">
           <mat-datepicker-toggle matSuffix [for]="fechaEjecucion"></mat-datepicker-toggle>
           <mat-datepicker #fechaEjecucion></mat-datepicker>
         </mat-form-field>
 
-        <form>
+        <form name="usuarioAutocomplete">
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Usuario" aria-label="Usuario" [matAutocomplete]="auto" [formControl]="usuario">
+            <input matInput placeholder="Usuario" name="usuarioAutocomplete_nombre" aria-label="Usuario" [matAutocomplete]="auto" [formControl]="usuario">
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="getNombreUsuario">
               <mat-option *ngFor="let usuario of usuariosFiltered" [value]="usuario">
                 <span>{{ usuario.nombres }} {{ usuario.apellidos }}</span>
@@ -22,7 +22,7 @@
         </form>
 
         <mat-form-field>
-          <mat-select placeholder="Estado" formControlName="estado">
+          <mat-select placeholder="Estado" name="tareaForm_estado" formControlName="estado">
             <mat-option *ngFor="let option of statusOptions" [value]="option.value">{{ option.text }}</mat-option>
           </mat-select>
         </mat-form-field>
