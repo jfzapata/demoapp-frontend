@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 
 // App modules
 import { SharedModule } from '@app/shared/shared.module';
@@ -17,6 +18,7 @@ import { TareasListComponent } from '@app/core/components/tareas-list/tareas-lis
   TareasListComponent],
   imports: [
     MDBBootstrapModule.forRoot(),
+    EcoFabSpeedDialModule,
     CommonModule,
     SharedModule
   ]

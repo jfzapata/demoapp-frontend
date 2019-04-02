@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+// Own
+// Types
+import { FloatingAction } from '@app/common/types/interfaces/floating-action';
 
 @Component({
   selector: 'app-floating-actions',
@@ -6,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./floating-actions.component.scss']
 })
 export class FloatingActionsComponent implements OnInit {
-
+  @Input() floatingActions: FloatingAction[];
   constructor() { }
 
   ngOnInit() {

@@ -1,3 +1,9 @@
-<p>
-  floating-actions works!
-</p>
+<eco-fab-speed-dial>
+    <eco-fab-speed-dial-trigger>
+        <button mat-fab (click)="doAction('trigger')"><mat-icon>menu</mat-icon></button>
+    </eco-fab-speed-dial-trigger>
+
+    <eco-fab-speed-dial-actions>
+        <button mat-mini-fab *ngFor="let floatingAction of mfloatingActions"><mat-icon>{{ floatingAction.icon }}</mat-icon></button>
+    </eco-fab-speed-dial-actions>
+</eco-fab-speed-dial>
