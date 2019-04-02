@@ -14,7 +14,10 @@ import {
   MatIconModule,
   MatFormFieldModule,
   MatInputModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatAutocompleteModule
 } from '@angular/material';
 
 @NgModule({
@@ -30,6 +33,9 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule,
     EcoFabSpeedDialModule,
     AgGridModule.withComponents([])
   ],
@@ -41,6 +47,9 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule,
     FloatingActionsComponent
   ]
 })
