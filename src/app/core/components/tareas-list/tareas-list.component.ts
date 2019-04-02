@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 // Own
 // Types
@@ -7,6 +8,8 @@ import { Tarea } from '@app/common/types/interfaces/tarea';
 import { ColumnDefinition } from '@app/common/types/interfaces/coumn-definition';
 // Services
 import { TareasService } from '@app/common/services/tareas.service';
+// Utils
+import { presentToast } from '@app/common/utils/general';
 
 @Component({
   selector: 'app-tareas-list',
@@ -20,7 +23,8 @@ export class TareasListComponent implements OnInit {
     icon: 'add',
     route: '/create-tarea'
   }];
-  constructor(private tareasService: TareasService) { }
+  constructor(private tareasService: TareasService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.buildColums();
@@ -49,11 +53,39 @@ export class TareasListComponent implements OnInit {
               },
               icon: 'edit',
               label: 'Editar'
+            },
+            {
+              context: this,
+              icon: 'delete',
+              label: 'Eliminar'
             }
           ],
         }
       }
     ];
+  }
+
+  methodFromParent(params: any) {
+    const tarea: Tarea = params.data;
+    const dialogRef = this.dialog.open(DeleteTareaDialogComponent, {
+      width: '300px',
+      data: {
+        tarea
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        /*this.tareasService.deleteTarea(tarea.tareaId)
+          .subscribe(() => {
+            presentToast('Tarea eliminada!', 'success');
+            this.getTareas();
+          }, () => {
+            presentToast('Error al eliminar la tarea!', 'error');
+          });*/
+          console.log('eliminar tarea');
+      }
+    });
   }
 
   private getTareas() {
@@ -63,6 +95,21 @@ export class TareasListComponent implements OnInit {
     }, (err) => {
 
     });
+  }
+
+}
+
+@Component({
+  templateUrl: './delete-confirmation-template.html',
+})
+export class DeleteTareaDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<DeleteTareaDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

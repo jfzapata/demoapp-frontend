@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Router } from '@angular/router';
 
 // Own
 // Types
@@ -9,7 +10,7 @@ import { ColumnDefinition } from '@app/common/types/interfaces/coumn-definition'
 // Services
 import { UsuariosService } from '@app/common/services/usuarios.service';
 import { TareasService } from '@app/common/services/tareas.service';
-import { Router } from '@angular/router';
+// Utils
 import { presentToast } from '@app/common/utils/general';
 
 @Component({
@@ -112,7 +113,7 @@ export class DeleteUsuarioDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DeleteUsuarioDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Usuario) {}
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   onNoClick(): void {
     this.dialogRef.close();

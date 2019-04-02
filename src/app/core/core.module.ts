@@ -12,6 +12,7 @@ import { HomeComponent } from '@app/core/components/home/home.component';
 import { UsuariosListComponent } from '@app/core/components/usuarios-list/usuarios-list.component';
 import { DeleteUsuarioDialogComponent } from '@app/core/components/usuarios-list/usuarios-list.component';
 import { TareasListComponent } from '@app/core/components/tareas-list/tareas-list.component';
+import { DeleteTareaDialogComponent } from '@app/core/components/tareas-list/tareas-list.component';
 import { CreateUsuarioComponent } from '@app/core/components/create-usuario/create-usuario.component';
 import { TareaCreateComponent } from '@app/core/components/tarea-create/tarea-create.component';
 
@@ -21,6 +22,7 @@ import { TareaCreateComponent } from '@app/core/components/tarea-create/tarea-cr
     UsuariosListComponent,
     DeleteUsuarioDialogComponent,
     TareasListComponent,
+    DeleteTareaDialogComponent,
     CreateUsuarioComponent,
     TareaCreateComponent
   ],
@@ -33,7 +35,8 @@ import { TareaCreateComponent } from '@app/core/components/tarea-create/tarea-cr
     ToastrModule.forRoot()
   ],
   entryComponents: [
-    DeleteUsuarioDialogComponent
+    DeleteUsuarioDialogComponent,
+    DeleteTareaDialogComponent
   ]
 })
 export class CoreModule { }
