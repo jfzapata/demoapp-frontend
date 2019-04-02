@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 // Components
 import { GridComponent } from '@app/shared/components/grid/grid.component';
 import { FloatingActionsComponent } from '@app/shared/components/floating-actions/floating-actions.component';
+import { RowActionsComponent } from '@app/shared/components/row-actions/row-actions.component';
 
 // Material components
 import {
@@ -17,13 +18,15 @@ import {
   MatSelectModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatMenuModule
 } from '@angular/material';
 
 @NgModule({
   declarations: [
     GridComponent,
-    FloatingActionsComponent
+    FloatingActionsComponent,
+    RowActionsComponent
   ],
   imports: [
     RouterModule,
@@ -36,6 +39,7 @@ import {
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
+    MatMenuModule,
     EcoFabSpeedDialModule,
     AgGridModule.withComponents([])
   ],
@@ -50,6 +54,7 @@ import {
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
+    MatMenuModule,
     FloatingActionsComponent
   ]
 })
