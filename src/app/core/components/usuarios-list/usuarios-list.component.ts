@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+// Own
+// Services
+import { UsuariosService } from '@app/common/services/usuarios.service';
+
 @Component({
   selector: 'app-usuarios-list',
   templateUrl: './usuarios-list.component.html',
@@ -7,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuariosListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private usuariosService: UsuariosService) { }
 
   ngOnInit() {
   }
