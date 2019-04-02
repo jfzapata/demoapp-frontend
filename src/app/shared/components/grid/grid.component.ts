@@ -10,8 +10,8 @@ import { ColumnDefinition } from '@app/common/types/interfaces/coumn-definition'
   styleUrls: ['./grid.component.scss']
 })
 export class GridComponent implements OnInit {
-  @Input() columnDefs: ColumnDefinition[];
-  @Input() rowData: any[];
+  @Input() columnDefs: ColumnDefinition[]; // The columns
+  @Input() rowData: any[]; // The records to display
   constructor() { }
 
   ngOnInit() {

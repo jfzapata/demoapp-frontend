@@ -1,5 +1,5 @@
 export interface ColumnDefinition {
   headerName: string;
-  field: string;
-  valueGetter: Function;
+  field?: string;
+  valueGetter?: Function;
 }
