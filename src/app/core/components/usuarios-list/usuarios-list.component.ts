@@ -3,9 +3,11 @@ import { Component, OnInit } from '@angular/core';
 // Own
 // Types
 import { Usuario } from '@app/common/types/interfaces/usuario';
+import { Tarea } from '@app/common/types/interfaces/tarea';
 import { ColumnDefinition } from '@app/common/types/interfaces/coumn-definition';
 // Services
 import { UsuariosService } from '@app/common/services/usuarios.service';
+import { TareasService } from '@app/common/services/tareas.service';
 
 @Component({
   selector: 'app-usuarios-list',
@@ -15,7 +17,8 @@ import { UsuariosService } from '@app/common/services/usuarios.service';
 export class UsuariosListComponent implements OnInit {
   usuarios: Usuario[]; // The records gonna be show
   columns: ColumnDefinition[]; // The colums for the table
-  constructor(private usuariosService: UsuariosService) { }
+  constructor(private usuariosService: UsuariosService,
+    private tareasService: TareasService) { }
 
   ngOnInit() {
     this.buildColums();
@@ -34,7 +37,12 @@ export class UsuariosListComponent implements OnInit {
 
   private getUsuarios() {
     this.usuariosService.getUsuarios()
-    .subscribe((usuarios: Usuario[]) => {
+    .subscribe(async (usuarios: Usuario[]) => {
+      for (let index = 0; index < usuarios.length; index++) {
+        const usuario: Usuario = usuarios[index];
+        await this.tareasService.getTareasByUsuarioId(usuario.usuarioId).toPromise()
+        .then((tareas: Tarea[]) => usuario['tareas'] = tareas);
+      }
       this.usuarios = usuarios;
     }, (err) => {
 
