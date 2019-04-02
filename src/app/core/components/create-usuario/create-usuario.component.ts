@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 // Own
 // Types
@@ -26,7 +27,9 @@ export class CreateUsuarioComponent implements OnInit {
     value: false,
     text: 'Deshabilitado'
   }];
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    private router: Router,
+    private usuariosService: UsuariosService) { }
 
   ngOnInit() {
     this.buildForm();
@@ -44,7 +47,13 @@ export class CreateUsuarioComponent implements OnInit {
 
   create() {
     const usuario: Usuario = this.usuarioForm.value;
-
+    this.usuariosService.createUsuario(usuario)
+    .subscribe(() => {
+      presentToast('Usuario creado correctamente!', 'success');
+      this.router.navigate(['/usuarios']);
+    }, () => {
+      presentToast('Error al crear el usuario', 'error');
+    });
   }
 
 }

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +13,8 @@ import { CoreModule } from '@app/core/core.module';
 // Layouts
 import { NavbarComponent } from '@app/core/layouts/navbar/navbar.component';
 
+// Utils
+import { ServiceLocator } from '@app/common/utils/service-locator';
 
 @NgModule({
   declarations: [
@@ -30,4 +32,10 @@ import { NavbarComponent } from '@app/core/layouts/navbar/navbar.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    injector: Injector
+  ) {
+    ServiceLocator.injector = injector;
+  }
+}
