@@ -9,6 +9,7 @@ import { ColumnDefinition } from '@app/common/types/interfaces/coumn-definition'
 import { UsuariosService } from '@app/common/services/usuarios.service';
 import { TareasService } from '@app/common/services/tareas.service';
 import { Router } from '@angular/router';
+import { presentToast } from '@app/common/utils/general';
 
 @Component({
   selector: 'app-usuarios-list',
@@ -61,7 +62,10 @@ export class UsuariosListComponent implements OnInit {
   }
 
   methodFromParent(params: any) {
-    console.log(params);
+    const usuario: Usuario = params.data;
+    if (usuario.tareas.length > 0) {
+      presentToast('El usuario aún tiene tareas asignadas!', 'error');
+    }
   }
 
   private getUsuarios() {
