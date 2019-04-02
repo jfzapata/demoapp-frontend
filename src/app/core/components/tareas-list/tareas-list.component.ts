@@ -15,6 +15,10 @@ import { TareasService } from '@app/common/services/tareas.service';
 export class TareasListComponent implements OnInit {
   tareas: Tarea[]; // The records gonna be show
   columns: ColumnDefinition[]; // The colums for the table
+  floatingActions = [{
+    icon: 'add',
+    route: '/create-tarea'
+  }];
   constructor(private tareasService: TareasService) { }
 
   ngOnInit() {
