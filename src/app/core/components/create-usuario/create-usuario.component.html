@@ -2,18 +2,18 @@
   <h3 *ngIf="!isEdition">Crear Usuario</h3>
   <hr>
   <div class="row">
-    <form class="col-12" *ngIf="usuarioForm" [formGroup]="usuarioForm" (submit)="create()">
+    <form class="col-12" name="usuarioForm" *ngIf="usuarioForm" [formGroup]="usuarioForm" (submit)="create()">
       <div class="col-8 example-container">
         <mat-form-field>
-          <input matInput placeholder="Nombres" formControlName="nombres">
+          <input matInput name="usuarioForm_nombres" placeholder="Nombres" formControlName="nombres">
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Apellidos" formControlName="apellidos">
+          <input matInput name="usuarioForm_apellidos" placeholder="Apellidos" formControlName="apellidos">
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select placeholder="Estado" formControlName="estado">
+          <mat-select placeholder="Estado" name="usuarioForm_estado" formControlName="estado">
             <mat-option *ngFor="let option of statusOptions" [value]="option.value">{{ option.text }}</mat-option>
           </mat-select>
         </mat-form-field>
