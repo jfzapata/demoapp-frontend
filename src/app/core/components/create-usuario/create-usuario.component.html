@@ -1,5 +1,27 @@
 <div class="content container">
-    <h3>Crear Usuario</h3>
-    <hr>
+  <h3 *ngIf="!isEdition">Crear Usuario</h3>
+  <hr>
+  <div class="row">
+    <form class="col-12" *ngIf="usuarioForm" [formGroup]="usuarioForm" (submit)="create()">
+      <div class="col-8 example-container">
+        <mat-form-field>
+          <input matInput placeholder="Nombres" formControlName="nombres">
+        </mat-form-field>
 
+        <mat-form-field>
+          <input matInput placeholder="Apellidos" formControlName="apellidos">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Estado" formControlName="estado">
+            <mat-option *ngFor="let option of statusOptions" [value]="option.value">{{ option.text }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="example-button-row">
+          <button mat-raised-button [routerLink]="['/usuarios']">REGRESAR</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="usuarioForm.invalid || usuarioForm.pristine">{{ isEdition ? 'EDITAR' : 'CREAR' }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

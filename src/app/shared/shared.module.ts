@@ -11,7 +11,10 @@ import { FloatingActionsComponent } from '@app/shared/components/floating-action
 // Material components
 import {
   MatButtonModule,
-  MatIconModule
+  MatIconModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule
 } from '@angular/material';
 
 @NgModule({
@@ -24,13 +27,20 @@ import {
     CommonModule,
     MatButtonModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     EcoFabSpeedDialModule,
     AgGridModule.withComponents([])
   ],
   exports: [
+    RouterModule,
     GridComponent,
     MatButtonModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     FloatingActionsComponent
   ]
 })
