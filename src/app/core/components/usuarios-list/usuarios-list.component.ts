@@ -14,7 +14,7 @@ import { UsuariosService } from '@app/common/services/usuarios.service';
 })
 export class UsuariosListComponent implements OnInit {
   usuarios: Usuario[]; // The records gonna be show
-  colums: ColumnDefinition[]; // The colums for the table
+  columns: ColumnDefinition[]; // The colums for the table
   constructor(private usuariosService: UsuariosService) { }
 
   ngOnInit() {
@@ -23,11 +23,11 @@ export class UsuariosListComponent implements OnInit {
   }
 
   private buildColums() {
-    this.colums = [
-      { headerName: 'Nombres', field: 'nombres' },
-      { headerName: 'Apellidos', field: 'apellidos' },
-      { headerName: 'Fecha de Creación', field: 'fechaCreacion' },
-      { headerName: 'Estado', field: 'estado' },
+    this.columns = [
+      { headerName: 'Nombres', field: 'nombres', sortable: true, filter: true },
+      { headerName: 'Apellidos', field: 'apellidos', sortable: true, filter: true },
+      { headerName: 'Fecha de Creación', field: 'fechaCreacion', sortable: true, filter: true },
+      { headerName: 'Estado', valueGetter: (params) => params.data.estado ? 'Habilitado' : 'Deshabilitado' },
       { headerName: 'Cantidad de tareas asignadas', valueGetter: (params) => params.data.tareas.length }
     ];
   }
@@ -36,7 +36,6 @@ export class UsuariosListComponent implements OnInit {
     this.usuariosService.getUsuarios()
     .subscribe((usuarios: Usuario[]) => {
       this.usuarios = usuarios;
-      console.log(this.usuarios);
     }, (err) => {
 
     });

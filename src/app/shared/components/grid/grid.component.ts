@@ -12,6 +12,7 @@ import { ColumnDefinition } from '@app/common/types/interfaces/coumn-definition'
 export class GridComponent implements OnInit {
   @Input() columnDefs: ColumnDefinition[]; // The columns
   @Input() rowData: any[]; // The records to display
+  paginationPageSize = 5;
   constructor() { }
 
   ngOnInit() {

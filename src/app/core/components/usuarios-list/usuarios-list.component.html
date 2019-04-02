@@ -1,4 +1,9 @@
 <div class="container content">
   <h3>Lista de Usuarios</h3>
   <hr>
+  <mdb-card *ngIf="usuarios">
+    <mdb-card-body>
+      <app-grid [rowData]="usuarios" [columnDefs]="columns"></app-grid>
+    </mdb-card-body>
+  </mdb-card>
 </div>
