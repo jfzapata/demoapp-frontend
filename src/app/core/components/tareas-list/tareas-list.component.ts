@@ -26,6 +26,12 @@ export class TareasListComponent implements OnInit {
     this.columns = [
       { headerName: 'Fecha de Creación', field: 'fechaCreacion', sortable: true, filter: true },
       { headerName: 'Fecha de Ejecución', field: 'fechaEjecucion', sortable: true, filter: true },
+      {
+        headerName: 'Usuario asignado',
+        valueGetter: (params) => `${params.data.usuario.nombres} ${params.data.usuario.apellidos}`,
+        sortable: true,
+        filter: true
+      },
       { headerName: 'Estado', filter: true, valueGetter: (params) => params.data.estado ? 'Habilitado' : 'Deshabilitado' },
     ];
   }
