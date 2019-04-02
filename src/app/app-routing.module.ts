@@ -29,6 +29,10 @@ const routes: Routes = [{
   component: TareasListComponent
 },
 {
+  path: 'tareas-usuario/:usuarioId',
+  component: TareasListComponent
+},
+{
   path: 'create-tarea',
   component: TareaCreateComponent
 },
