@@ -2,10 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './core/layouts/navbar/navbar.component';
+import { AppRoutingModule } from '@app/app-routing.module';
+import { AppComponent } from '@app/app.component';
 
+// App Modules
+import { CoreModule } from '@app/core/core.module';
+
+// Layouts
+import { NavbarComponent } from '@app/core/layouts/navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,6 +18,7 @@ import { NavbarComponent } from './core/layouts/navbar/navbar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CoreModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [],
