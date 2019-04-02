@@ -40,7 +40,7 @@ export class CreateUsuarioComponent implements OnInit {
       usuarioId: [this.usuario ? this.usuario.usuarioId : ''],
       nombres: [this.usuario ? this.usuario.nombres : '', Validators.required],
       apellidos: [this.usuario ? this.usuario.apellidos : '', Validators.required],
-      // fechaCreacion: [this.usuario ? this.usuario.fechaCreacion : '', Validators.required],
+      fechaCreacion: [this.usuario ? this.usuario.fechaCreacion : ''],
       estado: [this.usuario ? this.usuario.estado : true]
     });
   }

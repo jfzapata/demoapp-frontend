@@ -6,6 +6,7 @@ import { HomeComponent } from '@app/core/components/home/home.component';
 import { UsuariosListComponent } from '@app/core/components/usuarios-list/usuarios-list.component';
 import { CreateUsuarioComponent } from '@app/core/components/create-usuario/create-usuario.component';
 import { TareasListComponent } from '@app/core/components/tareas-list/tareas-list.component';
+import { TareaCreateComponent } from '@app/core/components/tarea-create/tarea-create.component';
 
 const routes: Routes = [{
   path: '',
@@ -22,6 +23,10 @@ const routes: Routes = [{
 {
   path: 'tareas',
   component: TareasListComponent
+},
+{
+  path: 'create-tarea',
+  component: TareaCreateComponent
 }];
 
 @NgModule({

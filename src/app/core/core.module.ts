@@ -12,13 +12,15 @@ import { HomeComponent } from '@app/core/components/home/home.component';
 import { UsuariosListComponent } from '@app/core/components/usuarios-list/usuarios-list.component';
 import { TareasListComponent } from '@app/core/components/tareas-list/tareas-list.component';
 import { CreateUsuarioComponent } from '@app/core/components/create-usuario/create-usuario.component';
+import { TareaCreateComponent } from '@app/core/components/tarea-create/tarea-create.component';
 
 @NgModule({
   declarations: [
   HomeComponent,
   UsuariosListComponent,
   TareasListComponent,
-  CreateUsuarioComponent],
+  CreateUsuarioComponent,
+  TareaCreateComponent],
   imports: [
     MDBBootstrapModule.forRoot(),
     CommonModule,
