@@ -10,17 +10,20 @@ import { SharedModule } from '@app/shared/shared.module';
 // Components
 import { HomeComponent } from '@app/core/components/home/home.component';
 import { UsuariosListComponent } from '@app/core/components/usuarios-list/usuarios-list.component';
+import { DeleteUsuarioDialogComponent } from '@app/core/components/usuarios-list/usuarios-list.component';
 import { TareasListComponent } from '@app/core/components/tareas-list/tareas-list.component';
 import { CreateUsuarioComponent } from '@app/core/components/create-usuario/create-usuario.component';
 import { TareaCreateComponent } from '@app/core/components/tarea-create/tarea-create.component';
 
 @NgModule({
   declarations: [
-  HomeComponent,
-  UsuariosListComponent,
-  TareasListComponent,
-  CreateUsuarioComponent,
-  TareaCreateComponent],
+    HomeComponent,
+    UsuariosListComponent,
+    DeleteUsuarioDialogComponent,
+    TareasListComponent,
+    CreateUsuarioComponent,
+    TareaCreateComponent
+  ],
   imports: [
     MDBBootstrapModule.forRoot(),
     CommonModule,
@@ -28,6 +31,9 @@ import { TareaCreateComponent } from '@app/core/components/tarea-create/tarea-cr
     ReactiveFormsModule,
     FormsModule,
     ToastrModule.forRoot()
+  ],
+  entryComponents: [
+    DeleteUsuarioDialogComponent
   ]
 })
 export class CoreModule { }

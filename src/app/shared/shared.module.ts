@@ -19,7 +19,8 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatAutocompleteModule,
-  MatMenuModule
+  MatMenuModule,
+  MatDialogModule
 } from '@angular/material';
 
 @NgModule({
@@ -39,6 +40,7 @@ import {
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
+    MatDialogModule,
     MatMenuModule,
     EcoFabSpeedDialModule,
     AgGridModule.withComponents([])
@@ -55,6 +57,7 @@ import {
     MatNativeDateModule,
     MatAutocompleteModule,
     MatMenuModule,
+    MatDialogModule,
     FloatingActionsComponent
   ],
   entryComponents: [

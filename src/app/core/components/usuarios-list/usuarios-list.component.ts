@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 // Own
 // Types
@@ -24,7 +25,8 @@ export class UsuariosListComponent implements OnInit {
     route: '/create-usuario'
   }];
   constructor(private usuariosService: UsuariosService,
-    private tareasService: TareasService) { }
+    private tareasService: TareasService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.buildColums();
@@ -65,6 +67,19 @@ export class UsuariosListComponent implements OnInit {
     const usuario: Usuario = params.data;
     if (usuario.tareas.length > 0) {
       presentToast('El usuario aún tiene tareas asignadas!', 'error');
+    } else {
+      const dialogRef = this.dialog.open(DeleteUsuarioDialogComponent, {
+        width: '300px',
+        data: {
+          usuario
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          console.log('eliminar');
+        }
+      });
     }
   }
 
@@ -77,9 +92,24 @@ export class UsuariosListComponent implements OnInit {
         .then((tareas: Tarea[]) => usuario['tareas'] = tareas);
       }
       this.usuarios = usuarios;
-    }, (err) => {
-
+    }, () => {
+      presentToast('Error al consultar usuarios!', 'error');
     });
+  }
+
+}
+
+@Component({
+  templateUrl: './delete-confirmation-template.html',
+})
+export class DeleteUsuarioDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<DeleteUsuarioDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Usuario) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }
